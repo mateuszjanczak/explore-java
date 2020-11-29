@@ -5,9 +5,8 @@ import com.mateuszjanczak.thymeleaf.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Controller
 public class ProductController {
@@ -25,19 +24,19 @@ public class ProductController {
 
     @GetMapping("/products")
     public String products(Model model) {
-        List<Product> productList = productService.getList();
-        model.addAttribute("productList", productList);
+        model.addAttribute("productList", productService.getList());
         return "products";
     }
 
     @GetMapping("/products/new")
-    public String productForm() {
+    public String productForm(Model model) {
+        model.addAttribute("newProduct", new Product());
         return "productForm";
     }
 
     @PostMapping("/products/new")
-    public String productFormSubmit() {
-        return "products";
+    public String productFormSubmit(@ModelAttribute Product product) {
+        productService.addProduct(product);
+        return "redirect:/products";
     }
-
 }
