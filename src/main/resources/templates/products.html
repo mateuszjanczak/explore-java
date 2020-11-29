@@ -8,67 +8,49 @@
     <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body class="d-flex flex-column sticky-footer-wrapper min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="navbar-brand text-light" href="#">Shop</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link text-light" th:href="@{/}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" th:href="@{/products}">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" th:href="@{/products/new}">Add new product</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand text-light" th:href="@{/}">Shop</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link text-light" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" th:href="@{/products}">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" th:href="@{/products/new}">Add new product</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <main role="main" class="flex-fill container mt-5">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Product</th>
-                <th scope="col">Description</th>
-                <th scope="col">Price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Pear</td>
-                <td>a pome fruit of a tree (genus Pyrus, especially P. communis) of the rose family that typically has a pale green or brownish skin, a firm juicy flesh, and an oblong shape in which a broad base end tapers upward to a narrow stem end</td>
-                <td>5.00$</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Apple</td>
-                <td>the fleshy, usually rounded red, yellow, or green edible pome fruit of a usually cultivated tree (genus Malus) of the rose family</td>
-                <td>2.50$</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Grape</td>
-                <td>a smooth-skinned juicy light green or deep red to purplish black berry eaten dried or fresh as a fruit or fermented to produce wine</td>
-                <td>3.50$</td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Watermelon</td>
-                <td>a large oblong or roundish fruit with a hard green or white rind often striped or variegated, a sweet watery pink, yellowish, or red pulp, and usually many seeds</td>
-                <td>4.00$</td>
-            </tr>
-            </tbody>
-        </table>
-    </main>
+<main role="main" class="flex-fill container mt-5">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product, loop: ${productList}">
+            <th scope="row" th:text="${loop.index+1}"></th>
+            <td th:text="${product.getName()}"></td>
+            <td th:text="${product.getDescription()}"></td>
+            <td th:text="${product.getPrice() + '$'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 
-    <footer class="footer">
-        <div class="container-fluid bg-dark text-center p-2">
-            <span class="text-light">Mateusz Janczak 2020</span>
-        </div>
-    </footer>
+<footer class="footer">
+    <div class="container-fluid bg-dark text-center p-2">
+        <span class="text-light">Mateusz Janczak 2020</span>
+    </div>
+</footer>
 </body>
 <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 </html>
