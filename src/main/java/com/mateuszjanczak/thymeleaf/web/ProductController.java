@@ -4,9 +4,12 @@ import com.mateuszjanczak.thymeleaf.model.Product;
 import com.mateuszjanczak.thymeleaf.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class ProductController {
@@ -30,12 +33,15 @@ public class ProductController {
 
     @GetMapping("/products/new")
     public String productForm(Model model) {
-        model.addAttribute("newProduct", new Product());
+        model.addAttribute("product", new Product());
         return "productForm";
     }
 
     @PostMapping("/products/new")
-    public String productFormSubmit(@ModelAttribute Product product) {
+    public String productFormSubmit(@Valid @ModelAttribute Product product, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "productForm";
+        }
         productService.addProduct(product);
         return "redirect:/products";
     }
