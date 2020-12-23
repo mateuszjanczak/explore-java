@@ -23,6 +23,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Optional<Product> getById(int id) {
+        return productList.stream()
+                .filter(product -> product.getId() == id)
+                .findFirst();
+    }
+
+    @Override
     public List<Product> getList() {
         return productList;
     }

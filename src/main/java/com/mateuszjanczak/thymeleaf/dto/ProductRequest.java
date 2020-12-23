@@ -1,5 +1,6 @@
 package com.mateuszjanczak.thymeleaf.dto;
 
+import com.mateuszjanczak.thymeleaf.model.Product;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -23,4 +24,12 @@ public class ProductRequest {
     @Digits(integer = 5, fraction = 2, message = "Price must contain numbers")
     @DecimalMin(value = "0.01", message = "Price should not be less than 0")
     private float price;
+
+    public static ProductRequest valueOf(Product product) {
+        return ProductRequest.builder()
+                .name(product.getName())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .build();
+    }
 }

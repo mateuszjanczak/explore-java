@@ -13,7 +13,6 @@ import javax.validation.constraints.*;
 @Builder
 @Component
 public class Product {
-
     @NotEmpty(message = "Id must be not empty")
     private int id;
 

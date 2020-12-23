@@ -27,7 +27,7 @@
 
 <main role="main" class="flex-fill container mt-5">
     <div class="bg-light p-3 border mb-5">
-        <form th:action="@{/products/new}" th:object="${product}" method="post">
+        <form th:action="@{/products/new}" th:object="${productRequest}" method="post">
             <div class="form-group">
                 <label for="productName">Product name</label>
                 <input type="text" class="form-control" id="productName" th:field="*{name}" th:errorClass="is-invalid">
