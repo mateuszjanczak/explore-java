@@ -1,5 +1,6 @@
 package com.mateuszjanczak.thymeleaf.web;
 
+import com.mateuszjanczak.thymeleaf.dto.ProductRequest;
 import com.mateuszjanczak.thymeleaf.model.Product;
 import com.mateuszjanczak.thymeleaf.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -38,11 +39,11 @@ public class ProductController {
     }
 
     @PostMapping("/products/new")
-    public String productFormSubmit(@Valid @ModelAttribute Product product, BindingResult bindingResult) {
+    public String productFormSubmit(@Valid @ModelAttribute ProductRequest productRequest, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "productForm";
         }
-        productService.addProduct(product);
+        productService.addProduct(productRequest);
         return "redirect:/products";
     }
 }

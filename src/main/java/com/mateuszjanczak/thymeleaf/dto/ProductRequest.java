@@ -1,4 +1,4 @@
-package com.mateuszjanczak.thymeleaf.model;
+package com.mateuszjanczak.thymeleaf.dto;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -12,11 +12,7 @@ import javax.validation.constraints.*;
 @ToString
 @Builder
 @Component
-public class Product {
-
-    @NotEmpty(message = "Id must be not empty")
-    private int id;
-
+public class ProductRequest {
     @NotEmpty(message = "Name must be not empty")
     private String name;
 
