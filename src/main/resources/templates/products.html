@@ -30,18 +30,23 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Product</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="product, loop: ${productList}">
-                <th scope="row" th:text="${loop.index+1}"></th>
+                <th scope="row" th:text="${product.getId()}"></th>
                 <td th:text="${product.getName()}"></td>
                 <td th:text="${product.getDescription()}"></td>
                 <td th:text="${product.getPrice() + '$'}"></td>
+                <td>
+                    <a th:href="@{|/products/edit/${product.getId()}|}">Edit</a>
+                    <a th:href="@{|/products/remove/${product.getId()}|}">Remove</a>
+                </td>
             </tr>
             </tbody>
         </table>

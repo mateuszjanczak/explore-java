@@ -54,11 +54,11 @@ public class ProductServiceImpl implements ProductService {
     public Optional<Product> editProduct(int id, ProductRequest productRequest) {
         return productList.stream()
                 .filter(product -> product.getId() == id)
-                .peek(product -> Product.builder()
-                        .name(productRequest.getName())
-                        .description(productRequest.getDescription())
-                        .price(productRequest.getPrice())
-                        .build())
+                .peek(product -> {
+                    product.setName(productRequest.getName());
+                    product.setDescription(productRequest.getDescription());
+                    product.setPrice(productRequest.getPrice());
+                })
                 .findFirst();
     }
 

@@ -18,7 +18,7 @@ public class ProductRequest {
     private String name;
 
     @NotEmpty(message = "Description must be not empty")
-    @Size(min = 10, max = 200, message = "Description must be between 10 and 200 characters")
+    @Size(min = 10, max = 500, message = "Description must be between 10 and 500 characters")
     private String description;
 
     @Digits(integer = 5, fraction = 2, message = "Price must contain numbers")
